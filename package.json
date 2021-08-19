@@ -1,0 +1,30 @@
+{
+  "name": "hrap",
+  "version": "1.1.1",
+  "description": "A native Promise wrapper for http(s).request",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vegardbb/hrap.git"
+  },
+  "keywords": [
+    "http",
+    "node",
+    "request",
+    "promise",
+    "wrapper",
+    "web",
+    "www",
+    "resource",
+    "fetch"
+  ],
+  "author": "Vegard Bjerkli Bugge <vegabug@live.no> (https://github.com/vegardbb)",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/vegardbb/hrap/issues"
+  },
+  "homepage": "https://github.com/vegardbb/hrap#readme"
+}
