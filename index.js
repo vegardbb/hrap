@@ -1,5 +1,5 @@
 /**
- * Promise-wrapper for {http/https/http2}.request
+ * Promise-wrapper for {http/https}.request
  * @param {String} uri - The logical identifier for the resource. Internally, NodeJS
  * parses the string using url.parse and merges it with the given options object
  * @param {Object} options - The configuration of the HTTPS request
@@ -21,7 +21,7 @@ module.exports = ({ request }) => (uri, options) => new Promise((resolve, reject
         body: chars.join(''),
         status: res.statusCode,
         message: res.statusMessage,
-        type: res.headers['content-type']
+        contentType: res.headers['content-type']
       })
     })
   })
@@ -32,4 +32,3 @@ module.exports = ({ request }) => (uri, options) => new Promise((resolve, reject
   }
   req.end()
 })
-

@@ -3,9 +3,19 @@ Introducing HRaP - HTTP Requests as Promise
 
 This Node.js module provides the event based `request` function from the `http` and `https` modules in Node's API in the Promise format, such that HTTP(S) requests may be programmed in a sequential order in your source code.
 
-# Interfaces
+# Features
+
+ * Laissez-faire error handling: You provide the promise rejection handler
+ * Depends on native Node modules only
+ * Zero polyfilling
 
 ## Exported functions
+
+...
+
+## Return values
+
+The resolver function will receive one argument, an object consisting of three properties, the response body, the response status code and the response status message.
 
 # A few relevant questions
 
