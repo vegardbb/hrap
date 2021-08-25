@@ -1,14 +1,17 @@
+const http = require('http')
+const https = require('https')
+
 /**
  * Promise-wrapper for {http/https}.request
  * @param {String} uri - The logical identifier for the resource. Internally, NodeJS
  * parses the string using url.parse and merges it with the given options object
- * @param {Object} options - The configuration of the HTTPS request
+ * @param {Object} options - The configuration of the request
  * @see [NodeJS API]{@link https://nodejs.org/docs/latest-v14.x/api/http.html#http_http_request_options_callback}
  * documentation for an extensive list of valid properties.
- * @returns {Promise<Object>} Rejects if the https protocol is not used in uri.
- * The resolved object is a brief summary of the received response
+ * @returns {Promise<Object>} A simple summary of the received response
+ * @throws if the 'error' event is fired on the request
  */
-module.exports = ({ request }) => (uri, options) => new Promise((resolve, reject) => {
+const factory = ({ request }) => (uri, options) => new Promise((resolve, reject) => {
   const { body } = options
   const req = request(uri, Object.assign({}, options, { body: undefined }), (res) => {
     // Explicitly treat incoming data as utf8 (avoids issues with multi-byte chars)
@@ -32,3 +35,6 @@ module.exports = ({ request }) => (uri, options) => new Promise((resolve, reject
   }
   req.end()
 })
+
+exports.http = factory(http)
+exports.https = factory(https)
