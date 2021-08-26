@@ -11,7 +11,7 @@ const https = require('https')
  * @returns {Promise<Object>} A simple summary of the received response
  * @throws if the 'error' event is fired on the request
  */
-const factory = ({ request }) => (uri, options) => new Promise((resolve, reject) => {
+const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, reject) => {
   const { body } = options
   const req = request(uri, Object.assign({}, options, { body: undefined }), (res) => {
     // Explicitly treat incoming data as utf8 (avoids issues with multi-byte chars)
@@ -29,8 +29,7 @@ const factory = ({ request }) => (uri, options) => new Promise((resolve, reject)
     })
   })
   req.on('error', reject)
-  if (typeof body === 'string') {
-    // If the body string is defined, write the request body
+  if (typeof body === 'string' || Buffer.isBuffer(body)) {
     req.write(body)
   }
   req.end()
