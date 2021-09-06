@@ -5,6 +5,7 @@ tests/
 # Root level files
 CHANGELOG.md
 .gitignore
+docs
 
 # Github actions
 .github
