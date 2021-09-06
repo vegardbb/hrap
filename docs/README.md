@@ -52,7 +52,7 @@ https('https://jsonplaceholder.typicode.com/todos/1').then(onResponse).catch(onE
 
 ### Function parameters
 
-Each of the exported functions http and https accept as argument two parameters: the former is the URL to the resource, either in its URL object format, or in conventional string form. The latter is [the set of options passed](https://nodejs.org/docs/latest-v14.x/api/http.html#http_http_request_options_callback) to `Client.request`.
+Each of the exported functions http and https accept as argument two parameters: the former is the URL to the resource, either in its URL object format, or in conventional string form. The latter is [the set of options passed](https://nodejs.org/docs/latest-v14.x/api/http.html#http_http_request_options_callback) to `[http.ClientRequest](https://nodejs.org/docs/latest-v14.x/api/http.html#http_class_http_clientrequest).request`.
 
 ### The Promise
 
