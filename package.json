@@ -4,7 +4,7 @@
   "description": "A native Promise wrapper for http(s).request",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: 0 tests specified\" && exit 1"
   },
   "engines": {
     "node": ">=14"
@@ -15,14 +15,33 @@
   },
   "keywords": [
     "http",
-    "node",
+    "https",
     "request",
+    "fetch",
+    "node",
+    "node.js",
+    "nodejs",
+    "requests",
     "promise",
     "wrapper",
     "web",
     "www",
+    "network",
+    "net",
+    "url",
+    "get",
+    "put",
+    "post",
+    "delete",
     "resource",
-    "fetch"
+    "curl",
+    "wget",
+    "async",
+    "await",
+    "simple",
+    "uri",
+    "util",
+    "utility"
   ],
   "author": "Vegard Bjerkli Bugge <vegabug@live.no> (https://github.com/vegardbb)",
   "license": "SEE LICENSE IN LICENSE",
