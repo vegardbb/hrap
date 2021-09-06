@@ -3,8 +3,7 @@ fake/
 tests/
 
 # Root level files
-README.md
-TODO.md
+CHANGELOG.md
 .gitignore
 
 # Github actions
