@@ -1,7 +1,7 @@
 const http = require('http')
 const https = require('https')
 
-const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, reject) => {
+const factory = ({ request }) => (url, options = {}) => new Promise((resolve, reject) => {
   const { body } = options
   const newOptions = Object.assign({}, options, { body: undefined })
   const listener = (res) => {
@@ -19,7 +19,7 @@ const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, re
       })
     })
   }
-  const req = typeof uri === 'string' ? request(uri, newOptions, listener) : request(newOptions, listener)
+  const req = typeof url === 'string' ? request(url, newOptions, listener) : request(newOptions, listener)
   req.on('error', reject)
   if (typeof body === 'string' || Buffer.isBuffer(body)) {
     req.write(body)
@@ -28,19 +28,19 @@ const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, re
 })
 
 const isStringHttps = str => typeof str === 'string' && str.startsWith('https')
-const isUriOptions = (uri, options) => options == null && typeof uri === 'object'
+const isUrlOptions = (url, options) => options == null && typeof url === 'object'
 const asyncHttp = factory(http)
 const asyncHttps = factory(https)
 
-module.exports = async function hrap(uri, options) {
-  if (isStringHttps(uri) || isStringHttps(options?.protocol) || isStringHttps(uri?.protocol)) {
-    if (isUrlOptions(uri, options)) {
+module.exports = async function hrap(url, options) {
+  if (isStringHttps(url) || isStringHttps(options?.protocol) || isStringHttps(url?.protocol)) {
+    if (isUrlOptions(url, options)) {
       return asyncHttps(null, options)
     }
-    return asyncHttps(uri, options)
+    return asyncHttps(url, options)
   }
-  if (isUrlOptions(uri, options)) {
+  if (isUrlOptions(url, options)) {
     return asyncHttp(null, options)
   }
-  return asyncHttp(uri, options)
+  return asyncHttp(url, options)
 }
