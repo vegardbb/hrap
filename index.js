@@ -29,16 +29,18 @@ const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, re
 
 const isStringHttps = str => typeof str === 'string' && str.startsWith('https')
 const isUriOptions = (uri, options) => options == null && typeof uri === 'object'
+const asyncHttp = factory(http)
+const asyncHttps = factory(https)
 
 module.exports = async function hrap(uri, options) {
   if (isStringHttps(uri) || isStringHttps(options?.protocol) || isStringHttps(uri?.protocol)) {
     if (isUrlOptions(uri, options)) {
-      return factory(https)(null, options)
+      return asyncHttps(null, options)
     }
-    return factory(https)(uri, options)
+    return asyncHttps(uri, options)
   }
   if (isUrlOptions(uri, options)) {
-    return factory(http)(null, options)
+    return asyncHttp(null, options)
   }
-  return factory(http)(uri, options)
+  return asyncHttp(uri, options)
 }
