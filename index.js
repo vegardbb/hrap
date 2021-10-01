@@ -25,5 +25,11 @@ const factory = ({ request }) => (uri, options = {}) => new Promise((resolve, re
   req.end()
 })
 
-exports.http = factory(http)
-exports.https = factory(https)
+const isStringHttps = str => typeof str === 'string' && str.startsWith('https')
+
+module.exports = async function hrap(uri, options) {
+  if (isStringHttps(uri) || isStringHttps(options?.protocol)) {
+    return factory(https)(uri, options)
+  }
+  return factory(http)(uri, options)
+}

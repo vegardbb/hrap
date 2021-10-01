@@ -15,22 +15,18 @@ This Node.js module provides the event based `request` function from the `http` 
 Importing the module when using CommonJS modules:
 
 ```javascript
-const { http, https } = require('hrap')
+const hrap = require('hrap')
 ```
 
 When using EcmaScript modules:
 ```javascript
-import { http, https } as hrap from 'hrap'
-
-// Alternatively...
-import * as hrap from 'hrap'
-const { http, https } = hrap
+import hrap from 'hrap'
 ```
 
 ## Consumption
 
 ```javascript
-const { https } = require('hrap')
+const hrap = require('hrap')
 
 const onResponse = ({ status, message, contentType, body }) => {
   console.log(contentType) // application/json; charset=utf-8
@@ -47,12 +43,12 @@ const onError = ({ stack }) => {
   console.log(stack)
 }
 
-https('https://jsonplaceholder.typicode.com/todos/1').then(onResponse).catch(onError)
+hrap('https://jsonplaceholder.typicode.com/todos/1').then(onResponse).catch(onError)
 ```
 
 ### Function parameters
 
-Each of the exported functions http and https accept as argument two parameters: the former is the URL to the resource, either in its URL object format, or in conventional string form. The latter is [the set of options passed](https://nodejs.org/docs/latest-v14.x/api/http.html#http_http_request_options_callback) to `[http.ClientRequest](https://nodejs.org/docs/latest-v14.x/api/http.html#http_class_http_clientrequest).request`.
+The default export accepts as argument two parameters: the former is the URL to the resource, either in its URL object format, or in conventional string form. The latter is [the set of options passed](https://nodejs.org/docs/latest-v14.x/api/http.html#http_http_request_options_callback) to `[http.ClientRequest](https://nodejs.org/docs/latest-v14.x/api/http.html#http_class_http_clientrequest).request`.
 
 ### The Promise
 
@@ -66,6 +62,7 @@ Whenever the `error` event is fired internally, the error object is passed on to
 
 # Future implementation plans (tentative)
 
+ * **High priority**: Support both parameter interface on http.request (I forgot that it also accepts a single options object)
  * Response header property getter, properly secured against prototype leaks (will involve a breaking change with the data interface of the resolver parameter)
  * Better encoding support (i.e. handle multi-byte characters)
  * Support for multi-part form data (the kind that you cannot simply jam into the URL)
