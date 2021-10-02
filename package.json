@@ -1,6 +1,6 @@
 {
   "name": "hrap",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A native Promise wrapper for http(s).request",
   "main": "index.js",
   "scripts": {
