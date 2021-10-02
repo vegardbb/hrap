@@ -1,6 +1,9 @@
 Changelog
 --------------------------------------------
 
+# v2.1.0
+ - Support request calls with only *options* parameter
+
 # v2.0.0
  - Replaced named exports with one default export which uses `https` and `http` according to the provided protocol of the URL argument
 
