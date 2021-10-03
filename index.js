@@ -32,7 +32,7 @@ const asyncHttp = factory(http)
 const asyncHttps = factory(https)
 
 module.exports = async function hrap(url, options) {
-  if (typeof url === 'object' && options == null) {
+  if (typeof url === 'object') {
     if (isStringHttps(url?.protocol)) {
       return asyncHttps(null, url)
     }
