@@ -38,7 +38,7 @@ module.exports = async function hrap(url, options) {
     }
     return asyncHttp(null, url)
   }
-  if (isStringHttps(url) || isStringHttps(options?.protocol)) {
+  if (isStringHttps(options?.protocol) || isStringHttps(url)) {
     return asyncHttps(url, options)
   }
   return asyncHttp(url, options)
