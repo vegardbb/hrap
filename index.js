@@ -2,8 +2,6 @@ const http = require('http')
 const https = require('https')
 
 const factory = ({ request }) => (url, options = {}) => new Promise((resolve, reject) => {
-  const { body } = options
-  const newOptions = Object.assign({}, options, { body: undefined })
   const listener = (res) => {
     // Explicitly treat incoming data as utf8 (avoids issues with multi-byte chars)
     res.setEncoding('utf8')
@@ -19,8 +17,9 @@ const factory = ({ request }) => (url, options = {}) => new Promise((resolve, re
       })
     })
   }
-  const req = typeof url === 'string' ? request(url, newOptions, listener) : request(newOptions, listener)
+  const req = typeof url === 'string' ? request(url, options, listener) : request(options, listener)
   req.on('error', reject)
+  const { body } = options
   if (typeof body === 'string' || Buffer.isBuffer(body)) {
     req.write(body)
   }
