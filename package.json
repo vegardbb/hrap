@@ -44,7 +44,7 @@
     "utility"
   ],
   "author": "Vegard Bjerkli Bugge <vegabug@live.no> (https://github.com/vegardbb)",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/vegardbb/hrap/issues"
   },
