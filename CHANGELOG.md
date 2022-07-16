@@ -1,6 +1,10 @@
 Changelog
 --------------------------------------------
 
+# v2.2.0
+ - #1 Removed Object.assign call to avoid messing up the parameters if an URL object is used
+ - #2 Simplified 3 if - checks down to one
+
 # v2.1.0
  - Support request calls with only *options* parameter
 
