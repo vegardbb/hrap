@@ -17,7 +17,7 @@ const factory = ({ request }) => (url, options = {}) => new Promise((resolve, re
       })
     })
   }
-  const req = typeof url === 'string' ? request(url, options, listener) : request(options, listener)
+  const req = url == null ? request(options, listener) : request(url, options, listener)
   req.on('error', reject)
   const { body } = options
   if (typeof body === 'string' || Buffer.isBuffer(body)) {
@@ -31,13 +31,8 @@ const asyncHttp = factory(http)
 const asyncHttps = factory(https)
 
 module.exports = async function hrap(url, options) {
-  if (typeof url === 'object') {
-    if (isStringHttps(url?.protocol)) {
-      return asyncHttps(null, url)
-    }
-    return asyncHttp(null, url)
-  }
-  if (isStringHttps(options?.protocol) || isStringHttps(url)) {
+  const prot = options?.protocol
+  if (isStringHttps(prot) || (prot === undefined && (isStringHttps(url) || isStringHttps(url?.protocol)))) {
     return asyncHttps(url, options)
   }
   return asyncHttp(url, options)
