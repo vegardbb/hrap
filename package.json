@@ -1,6 +1,6 @@
 {
   "name": "hrap",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A native Promise wrapper for http(s).request",
   "main": "index.js",
   "scripts": {
@@ -48,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/vegardbb/hrap/issues"
   },
-  "homepage": "https://github.com/vegardbb/hrap/tree/main/docs"
+  "homepage": "https://github.com/vegardbb/hrap"
 }

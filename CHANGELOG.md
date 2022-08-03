@@ -1,6 +1,10 @@
 Changelog
 --------------------------------------------
 
+# v2.2.1
+ - #3 Enable setting latin1 encoding if the response is encoded in ISO-8859
+ - Document fuction interface in README showed in npm profile
+
 # v2.2.0
  - #1 Removed Object.assign call to avoid messing up the parameters if an URL object is used
  - #2 Simplified 3 if - checks down to one
