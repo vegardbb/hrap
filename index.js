@@ -1,5 +1,4 @@
-const http = require('http')
-const https = require('https')
+const { http, https } = require('follow-redirects')
 
 const getResponseEncoding = (res) => {
   const contentType = res.headers['content-type']
@@ -10,7 +9,7 @@ const getResponseEncoding = (res) => {
   return 'utf8'
 }
 
-const factory = ({ request }) => (url, options = {}) => new Promise((resolve, reject) => {
+const factory = ({ request }) => (url, options) => new Promise((resolve, reject) => {
   const listener = (res) => {
     // Explicitly treat incoming data as utf8 (avoids issues with multi-byte chars)
     res.setEncoding(getResponseEncoding(res))
@@ -40,9 +39,15 @@ const asyncHttp = factory(http)
 const asyncHttps = factory(https)
 
 module.exports = async function hrap(url, options) {
-  const prot = options?.protocol
-  if (isStringHttps(prot) || (prot === undefined && (isStringHttps(url) || isStringHttps(url?.protocol)))) {
-    return asyncHttps(url, options)
+  const normalizedOptions = (typeof options !== 'object' || options == null) ? {} : options
+  if (!normalizedOptions?.followRedirects) {
+    Object.assign(normalizedOptions, { followRedirects: false })
+  } else {
+    Object.assign(normalizedOptions, { followRedirects: true })
   }
-  return asyncHttp(url, options)
+  const prot = normalizedOptions?.protocol
+  if (isStringHttps(prot) || (prot === undefined && (isStringHttps(url) || isStringHttps(url?.protocol)))) {
+    return asyncHttps(url, normalizedOptions)
+  }
+  return asyncHttp(url, normalizedOptions)
 }
