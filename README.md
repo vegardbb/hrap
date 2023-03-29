@@ -9,6 +9,7 @@ This Node.js module provides the event based `request` function from the `http` 
  * Depends on native Node modules only
  * Zero polyfilling
  * Encoding opinionated (there might be other HTTP libraries who fare better with use cases involving support for other kinds of string coding)
+ * Following redirects: Just add `followRedirects: true` to the option parameter. Implemented with the 3rd party module [follow-redirects](https://github.com/follow-redirects/follow-redirects)
 
 ## Exported functions
 
